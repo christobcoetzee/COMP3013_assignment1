@@ -2,15 +2,17 @@ import React from "react";
 import { Header } from "./components/Header";
 import { Assignments } from "./components/Assignments";
 
-let nextId = 0; // preventing the destruction of nextId when App rerenders.
-
 function App() {
 	const [assignments, setAssignments] = React.useState([]);
 
-	const createAssignment = (newAssignment) => {
+	const createAssignment = (text) => {
 		setAssignments([
 			...assignments,
-			{ id: nextId++, text: newAssignment, status: 'unchecked' }
+			{
+				id: crypto.randomUUID(),
+				text: text,
+				status: 'unchecked'
+			}
 		]);
 	};
 

@@ -16,15 +16,15 @@ export function Assignment({ id, text, status, updateAssignment, deleteAssignmen
 
 	return (
 		<li className={styles.assignment} data-id={id}>
-			<button onClick={updateStatus} className={styles.checkContainer}>
-				<div>{
+			<button onClick={updateStatus} className={styles.checkContainer} aria-checked={status === 'checked'} aria-labelledby={id}>
+				{
 					status === 'checked' && <TbCheck size={20} color="white" />
-				}</div>
+				}
 			</button>
 
-			<p className={styledStatus}>{text}</p>
+			<p className={styledStatus} id={id}>{text}</p>
 
-			<button onClick={deleteItem} className={styles.deleteButton}>
+			<button onClick={deleteItem} className={styles.deleteButton} aria-label="Delete">
 				<TbTrash size={20} />
 			</button>
 		</li>

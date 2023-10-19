@@ -5,27 +5,26 @@ export function Assignments({ assignments, updateAssignment, deleteAssignment })
 	let completed = assignments.filter(({ status }) => status === 'checked').length;
 
 	return (
-		<section className={styles.assignments}>
+		<main className={styles.assignments}>
 			<header className={styles.header}>
-				<div>
-					<p>Created Assignments</p>
+				<p>
 					<span>{assignments.length}</span>
-				</div>
-
-				<div>
-					<p className={styles.textPurple}>Completed Assignments</p>
+					<span>Created Assignments</span>
+				</p>
+				<p>
 					<span>{completed} of {assignments.length}</span>
-				</div>
+					<span className={styles.textPurple}>Completed Assignments</span>
+				</p>
 			</header>
 
 			<ul className={styles.list}>
 				{
 					assignments.map((a, key) => {
-						return <Assignment id={a.id} text={a.text} status={a.status} key={key}
+						return <Assignment id={a.id} text={a.text} status={a.status} key={id}
 							updateAssignment={updateAssignment} deleteAssignment={deleteAssignment} />
 					})
 				}
 			</ul>
-		</section>
+		</main>
 	);
 }
