@@ -1,6 +1,7 @@
 import { Assignment } from "../Assignment";
 import styles from "./assignments.module.css";
 
+
 export function Assignments({ assignments, updateAssignment, deleteAssignment }) {
 	let completed = assignments.filter(({ status }) => status === 'checked').length;
 
@@ -19,8 +20,8 @@ export function Assignments({ assignments, updateAssignment, deleteAssignment })
 
 			<ul className={styles.list}>
 				{
-					assignments.map((a, key) => {
-						return <Assignment id={a.id} text={a.text} status={a.status} key={id}
+					assignments.map((a) => {
+						return <Assignment id={a.id} text={a.text} deadline={a.deadline} status={a.status} key={a.id}
 							updateAssignment={updateAssignment} deleteAssignment={deleteAssignment} />
 					})
 				}

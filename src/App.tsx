@@ -3,6 +3,8 @@ import { Header } from "./components/Header";
 import { Assignments } from "./components/Assignments";
 
 function App() {
+	const [selected, setSelected] = React.useState<Date>();
+
 	const [assignments, setAssignments] = React.useState([]);
 
 	const createAssignment = (text) => {
@@ -11,6 +13,7 @@ function App() {
 			{
 				id: crypto.randomUUID(),
 				text: text,
+				deadline: selected,
 				status: 'unchecked'
 			}
 		]);
@@ -33,7 +36,7 @@ function App() {
 
 	return (
 		<>
-			<Header createAssignment={createAssignment} />
+			<Header createAssignment={createAssignment} selected={selected} setSelected={setSelected} />
 			<Assignments assignments={assignments} updateAssignment={updateAssignment} deleteAssignment={deleteAssignment} />
 		</>
 	);

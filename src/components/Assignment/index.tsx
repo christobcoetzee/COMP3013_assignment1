@@ -1,7 +1,9 @@
 import styles from "./assignment.module.css";
 import { TbCheck, TbTrash } from "react-icons/tb";
+import { format, isPast, isTomorrow } from 'date-fns';
 
-export function Assignment({ id, text, status, updateAssignment, deleteAssignment }) {
+
+export function Assignment({ id, text, deadline, status, updateAssignment, deleteAssignment }) {
 	const styledStatus = (status === 'checked') ? styles.textCompleted : '';
 
 	const deleteItem = (e) => {
@@ -22,7 +24,12 @@ export function Assignment({ id, text, status, updateAssignment, deleteAssignmen
 				}
 			</button>
 
-			<p className={styledStatus} id={id}>{text}</p>
+			<p className={styledStatus} id={id}>
+				{text}
+				<span className={isTomorrow(deadline) || isPast(deadline) ? styles.deadlineUrgent : styles.deadline}>
+					Due: {isTomorrow(deadline) ? 'tomorrow' : format(deadline, 'PP')}
+				</span>
+			</p>
 
 			<button onClick={deleteItem} className={styles.deleteButton} aria-label="Delete">
 				<TbTrash size={20} />
